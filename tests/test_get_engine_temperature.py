@@ -14,5 +14,14 @@ class test_Car_getEngineTemperature(TestCase):
         self.assertEqual("70C temperature engine is ok", result)
 
 
+    @patch.object(Car, 'getEngineTemperature')
+    def test_temperature_engine_too_high(self, mock_method):
+        #prepare mock
+        mock_method.return_value = "100C temperature engine is too high"
+        #testing
+        test_object = Car()
+        result = test_object.getEngineTemperature()
+        self.assertEqual("100C temperature engine is too high", result)
+
 if __name__ == '__main__':
     main()
